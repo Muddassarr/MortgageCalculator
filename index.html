@@ -1,0 +1,117 @@
+<html>
+	<head>
+		<title>Welcome to YBS Mortgage Calculator</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="CSS/Style.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<link rel="icon" href="Images/calculator-icon.png"></link>
+
+	</head>
+	<body>
+		<nav class="navbar navbar-default1 navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar" style="background-color: black;"></span>
+					<span class="icon-bar" style="background-color: black;"></span>
+					<span class="icon-bar" style="background-color: black;"></span>                        
+					</button>
+					<a class="navbar-brand" href="#myPage"><img src="Images/YBSLogo.jpg" style="height: -webkit-fill-available;"></a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar" style="background-color: white;">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#" style="color: #008839;">ABOUT</a></li>
+						<li><a href="#" style="color: #008839;">HELP</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<br><br><br><br>
+		<div id="MainPage" style="  background-image: url(Images/Mortgage.jpg);">
+			<br><br><br><br><br><br><br><br>
+			<h2 style="color: #008839;">Welcome to Yorkshire Building Society</h2>
+			<h4 style="color: black;">Mortgage calculators & tools</h4>
+			<p style="color: black;">Use our simple mortgage calculators to work out how much you could borrow and get an estimate on your mortgage repayments.</p>
+			<button id="myBtn">Calculate Mortgage</button>
+			<div id="myModal" class="modal">
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<h1>Mortgage Calculator</h1>
+					<p>Enter the Deposit : </p>
+					<input type="Number" size=10 id='num1' min="0" placeholder="Deposit"><br><br>
+					<p>Enter the Property Value : </p>
+					<input type="Number" size=10 id='num2' min="0" placeholder="Property Value" required="required"><br><br>
+					<p>Enter the Interest Rate : </p>
+					<input type="Number" size=10 id='num3' min="0" max="100" placeholder="Interest repayment" required="required"><br><br>
+					<p>Enter Number of Years : </p>
+					<input type="Number" size=10 id='num4' min="0" max="45" placeholder="Mortgage Term (Years)" required="required"><br><br>
+					<button onclick="showresult()">Calculate Mortagage</button><br><br>
+					<p>Your Monthly Payment Will be : </p>
+					<input type="text" id='result' readonly placeholder="Monthly Payment">
+				</div>
+			</div>
+			<br><br><br><br><br><br><br><br>
+		</div>
+		<footer class="container-fluid text-center">
+			<a href="#MainPage" title="To Top">
+			<span class="glyphicon glyphicon-chevron-up"></span>
+			</a>
+			<p>Back to Top</p>
+		</footer>
+	</body>
+	<script>
+
+		var modal = document.getElementById("myModal");
+		
+		
+		var btn = document.getElementById("myBtn");
+		
+		
+		var span = document.getElementsByClassName("close")[0];
+		
+		
+		btn.onclick = function() {
+		  modal.style.display = "block";
+		}
+		
+		
+		span.onclick = function() {
+		  modal.style.display = "none";
+		}
+		
+		window.onclick = function(event) {
+		  if (event.target == modal) {
+		    modal.style.display = "none";
+		  }
+		}
+		
+		function showresult(){
+		var Deposit=parseFloat(document.getElementById('num1').value);
+		var Property=parseFloat(document.getElementById('num2').value);
+		var Interest=parseFloat(document.getElementById('num3').value);
+		var Years=parseFloat(document.getElementById('num4').value);
+		var Result;
+		
+		Result=(Interest/100/12);
+		Result=1+Result;
+		var Months=Years*12;
+		Result=Math.pow(Result,-Months);
+		Result=1-Result;
+		Result=(Interest/100/12)/Result;
+		Result=Result*Property;
+		
+		
+		
+		
+		document.getElementById('result').value=Result;
+		
+		
+			
+		
+		}
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</html>
